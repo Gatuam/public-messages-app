@@ -1,10 +1,14 @@
 import {  z } from 'zod'
 
-export const signInValidation = z.object({
-    username : z
+export const usernameValidation = z.object({
+     username : z
     .string()
     .min(3, 'Username should be at leat 3 char')
     .max(20, 'Username mustr not be longer than 20 char'),
+})
+
+export const signInValidation = z.object({
+    usernameValidation,
     email : z
     .string()
     .email({message : 'Invalid email adresss'}),
