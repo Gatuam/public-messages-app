@@ -1,8 +1,5 @@
 import dbConnect from "@/config/dbconfig";
 import UserModel from "@/models/User";
-import { usernameValidation } from "@/Schemas/SignUpSchema";
-import { success, z } from "zod";
-import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     await dbConnect();
