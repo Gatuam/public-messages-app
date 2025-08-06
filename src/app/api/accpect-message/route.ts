@@ -17,12 +17,12 @@ export async function POST(req: Request) {
     );
   }
   const userId = user._id;
-  const { willAccpectMessage } = await req.json();
+  const { accpectMessagestatue } = await req.json();
   try {
     const updateUser = await UserModel.findByIdAndUpdate(
       userId,
       {
-        isAccpectingMessage: willAccpectMessage,
+        isAccpectingMessage: accpectMessagestatue,
       },
       {
         new: true,
