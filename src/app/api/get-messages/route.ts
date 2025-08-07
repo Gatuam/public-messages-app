@@ -17,26 +17,32 @@ export async function POST(req: Request) {
       { status: 401 }
     );
   }
-  const userId = new mongoose.Types.ObjectId( user._id );
+  const userId = new mongoose.Types.ObjectId(user._id);
   try {
     const user = await UserModel.aggregate([
-        {$match : {id: userId}},
-        {$unwind : '$messages'},
-        {$sort : {'messages.createdAt' : -1}},
-        {$group : {_id: '$_id', messages : {$push : '$messages'}}}
-    ])
-    if(!user || user.length === 0){
-      return Response.json({
-        success : false,
-        message : 'User not found'
-      }, {status : 400})
+      { $match: { id: userId } },
+      { $unwind: "$messages" },
+      { $sort: { "messages.createdAt": -1 } },
+      { $group: { _id: "$_id", messages: { $push: "$messages" } } },
+    ]);
+    if (!user || user.length === 0) {
+      return Response.json(
+        {
+          success: false,
+          message: "User not found",
+        },
+        { status: 400 }
+      );
     }
-    return Response.json({
-      sucess : true,
-      messages : user[0].message
-    },{status : 200})
+    return Response.json(
+      {
+        sucess: true,
+        messages: user[0].message,
+      },
+      { status: 200 }
+    );
   } catch (error) {
-     return Response.json(
+    return Response.json(
       {
         success: true,
         message: "Error while getting message",

@@ -58,7 +58,7 @@ export async function POST(req: Request) {
   }
 }
 
-export async function Get(req : Request) {
+export async function Get(req: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user = session?.user;
@@ -74,9 +74,9 @@ export async function Get(req : Request) {
   const userId = user._id;
   try {
     const foundUser = await UserModel.findOne({
-        userId
+      userId,
     });
-     if (!foundUser) {
+    if (!foundUser) {
       console.log("User not found");
       return Response.json(
         {
@@ -89,7 +89,7 @@ export async function Get(req : Request) {
     return Response.json(
       {
         success: true,
-        isAccpectingMessages : foundUser.isAccpectingMessage,
+        isAccpectingMessages: foundUser.isAccpectingMessage,
       },
       { status: 200 }
     );
