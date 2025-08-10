@@ -1,5 +1,5 @@
 "use client";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import React from "react";
@@ -22,7 +22,7 @@ const Navbar = () => {
     <div className="w-full min-h-20 ">
       <div className=" flex max-w-7xl mx-auto justify-between min-h-20 items-center p-5  border-b border-[#7777772d]">
         <div className="flex flex-col justify-center items-start gap-2">
-          <a className="text-2xl font-bold text-blue-400" href="#">
+          <a className="text-2xl font-bold text-green-400" href="/">
             Public Message
           </a>
           {user && (
@@ -61,6 +61,15 @@ const Navbar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+        )}
+        {!user && (
+          <Button
+            variant={"secondary"}
+            className=" cursor-pointer"
+            onClick={() => signIn()}
+          >
+            SignIn
+          </Button>
         )}
       </div>
     </div>

@@ -75,7 +75,7 @@ const page = () => {
   };
 
   return (
-    <div className="w-full min-h-screen  flex flex-col justify-center items-center bg-gradient-to-b from-[#111]">
+    <div className="w-full pt-40  flex flex-col justify-center items-center bg-gradient-to-b from-[#111]">
       <div className="w-full max-w-sm mx-auto border border-[#8686865a] rounded-lg p-6 space-y-6 ">
         <div className="flex flex-col items-center justify-center space-y-2 mt-4 ">
           <h1 className="font-bold text-2xl text-center text-neutral-300 ">
