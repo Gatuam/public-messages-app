@@ -1,9 +1,8 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
-import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Verified } from "lucide-react";
 import {

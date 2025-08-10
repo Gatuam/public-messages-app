@@ -3,14 +3,13 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { ThemeProvider } from "next-themes";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 import Navbar from "./dashboard/_components/Navbar";
 
-// Use Poppins font
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // adjust weights as needed
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,18 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body 
+      <body
         suppressHydrationWarning={true}
         className={`${poppins.variable} antialiased`}
       >
         <AuthProvider>
-          <ThemeProvider 
-            attribute="class"
-            defaultTheme="system"
-          >
-            <Navbar/>
+          <ThemeProvider attribute="class" defaultTheme="system">
+            <Navbar />
             {children}
-             <Toaster />
+            <Toaster />
           </ThemeProvider>
         </AuthProvider>
       </body>

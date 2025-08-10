@@ -1,6 +1,6 @@
 import dbConnect from "@/config/dbconfig";
-import UserModel, { MessageSchema, Message } from "@/models/User";
-import { success } from "zod";
+import UserModel, {  Message } from "@/models/User";
+
 
 export async function POST(req: Request) {
   await dbConnect();
