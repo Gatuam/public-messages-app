@@ -53,7 +53,7 @@ export async function POST(req: Request) {
   } catch (error) {
     return Response.json({
       success: false,
-      message: "Error while verifingcode",
+      message: error,
     });
   }
 }

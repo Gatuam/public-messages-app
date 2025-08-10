@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -21,9 +22,9 @@ const Navbar = () => {
     <div className="w-full min-h-20 ">
       <div className=" flex max-w-7xl mx-auto justify-between min-h-20 items-center p-5  border-b border-[#7777772d]">
         <div className="flex flex-col justify-center items-start gap-2">
-          <a className="text-2xl font-bold text-green-400" href="/">
+          <Link className="text-2xl font-bold text-green-400" href="/">
             Public Message
-          </a>
+          </Link>
           {user && (
             <Badge className="bg-blue-500 cursor-pointer" asChild>
               <p className="text-neutral-200">

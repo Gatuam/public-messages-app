@@ -1,8 +1,8 @@
-import nodemailer  from "nodemailer";
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   secure: true,
-  host: 'smtp.gmail.com',
+  host: "smtp.gmail.com",
   port: 465,
   auth: {
     user: process.env.APP_USER,
@@ -10,17 +10,17 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendMail(to :any, subject :any, html :any) {
+async function sendMail(to: string, subject: string, html: string) {
   try {
-    let info = await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: process.env.APP_USER,
       to: to,
-      subject: subject, 
+      subject: subject,
       html: html,
     });
-    console.log('Email sent:', info.messageId);
+    console.log("Email sent:", info.messageId);
   } catch (err) {
-    console.error('Failed to send mail:', err);
+    console.error("Failed to send mail:", err);
   }
 }
 export default sendMail;
