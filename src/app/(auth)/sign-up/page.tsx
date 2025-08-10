@@ -62,6 +62,7 @@ const page = () => {
         return
       }
       toast.success(res.data.message)
+      router.push(`/verify/${username}`)
 
     } catch (error) {
       console.log("error while sign up ",error)
@@ -74,11 +75,16 @@ const page = () => {
   };
 
   return (
-    <div className="w-full min-h-screen  flex flex-col justify-center items-center">
-      <div className="max-w-7xl mx-auto p-6 space-y-6">
-
-      </div>
-      <div className="w-full max-w-sm mx-auto border border-[#8686865a] rounded-lg p-6 ">
+    <div className="w-full min-h-screen  flex flex-col justify-center items-center bg-gradient-to-b from-[#111]">
+      <div className="w-full max-w-sm mx-auto border border-[#8686865a] rounded-lg p-6 space-y-6 ">
+        <div className="flex flex-col items-center justify-center space-y-2 mt-4 ">
+          <h1 className="font-bold text-2xl text-center text-neutral-300 ">
+            Join Public Messaging App
+          </h1>
+          <p className="text-sm tracking-wider">
+            Sign up to start messaging
+          </p>
+        </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-1 py-5 flex flex-col justify-center">
         <FormField
@@ -151,7 +157,7 @@ const page = () => {
         <div>
           <h4 >
             Already have an account?
-            <Link className="text-sm tracking-tight text-blue-400" href='/sign-in'>Sign-in</Link>
+            <span className="ml-2"> <Link className="text-sm tracking-tight text-blue-400 " href='/sign-in'>Sign-in</Link></span>
           </h4>
         </div>
         </form> 

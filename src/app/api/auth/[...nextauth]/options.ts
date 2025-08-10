@@ -4,6 +4,7 @@ import dbConnect from "@/config/dbconfig";
 import UserModel from "@/models/User";
 import bcrypt from "bcrypt";
 import NextAuth from "next-auth";
+import { success } from "zod";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -34,7 +35,13 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error("Password is incorrect");
           }
-        } catch (error) {}
+        } catch (error) {
+          return Response.json({
+            success : false,
+            message : 'Eoor acccour while sign-in'
+          })
+          throw new Error("An error occurred during login");
+        }
       },
     }),
   ],

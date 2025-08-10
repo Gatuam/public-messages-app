@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner"
+import Navbar from "./dashboard/_components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Use Poppins font
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // adjust weights as needed
 });
 
 export const metadata: Metadata = {
@@ -29,13 +27,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body 
         suppressHydrationWarning={true}
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         <AuthProvider>
           <ThemeProvider 
             attribute="class"
             defaultTheme="system"
           >
+            <Navbar/>
             {children}
              <Toaster />
           </ThemeProvider>
