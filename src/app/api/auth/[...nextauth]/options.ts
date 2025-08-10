@@ -39,7 +39,6 @@ export const authOptions: NextAuthOptions = {
             success: false,
             message: "Eoor acccour while sign-in",
           });
-          throw new Error("An error occurred during login");
         }
       },
     }),

@@ -20,7 +20,7 @@ import Link from "next/link";
 import { signInValidation } from "@/Schemas/SignInSchema";
 import { signIn } from "next-auth/react";
 
-const page = () => {
+const Page = () => {
   const [submit, setSubmit] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof signInValidation>>({
@@ -32,7 +32,6 @@ const page = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof signInValidation>) => {
-    console.log(data);
     setSubmit(true);
     const res = await signIn("credentials", {
       redirect: false,
@@ -126,4 +125,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

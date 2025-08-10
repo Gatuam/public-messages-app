@@ -15,12 +15,9 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   const [username, setUsername] = useState("");
-  const [checkuUsername, setCheckUsername] = useState(false);
   const [submit, setSubmit] = useState(false);
-  const [usernameMessage, setUsernameMessage] = useState("");
-  const [debouncedUsername, setValue] = useDebounceValue(username, 500);
   const router = useRouter();
   const form = useForm<z.infer<typeof signUpValidation>>({
     resolver: zodResolver(signUpValidation),
@@ -30,27 +27,6 @@ const page = () => {
       password: "",
     },
   });
-
-  useEffect(() => {
-    const CheckUsername = async () => {
-      setCheckUsername(true);
-      setUsernameMessage("");
-      try {
-        const res = await axios.get(
-          `/api/username-unique?username=${debouncedUsername}`
-        );
-        console.log(`res from checkuniqueusername ${res}`);
-        setUsernameMessage(res.data.message);
-      } catch (error) {
-        const apiError = error as AxiosError<ApiResponse>;
-        const errorMessage = setUsernameMessage(apiError.response?.data.message ?? "");
-        console.log(errorMessage)
-      } finally {
-        setCheckUsername(false);
-      }
-    };
-
-  }, [debouncedUsername]);
 
   const onSubmit = async (data: z.infer<typeof signUpValidation>) => {
     console.log(data)
@@ -167,4 +143,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
