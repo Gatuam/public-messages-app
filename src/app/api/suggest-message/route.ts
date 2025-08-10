@@ -18,12 +18,7 @@ export async function POST(req: Request) {
         message : 'stream error may be token is not enough'
       })
     }
-    return Response.json({
-        success : true,
-        result
-      })
-
-    return result.toUIMessageStreamResponse();
+    return result.toTextStreamResponse();
   }catch (error : any) {
   if (error.message.includes('Web search failed')) {
     console.log('Search error:', error.message);

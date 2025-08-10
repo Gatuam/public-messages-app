@@ -79,7 +79,6 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.log(Error, "Error while registering");
     return Response.json(
       {
         success: false,
