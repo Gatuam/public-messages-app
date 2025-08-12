@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error("Password is incorrect");
           }
-        } catch (error) {
+        } catch (_error) {
           return Response.json({
             success: false,
             message: "Eoor acccour while sign-in",

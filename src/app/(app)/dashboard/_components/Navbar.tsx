@@ -19,7 +19,7 @@ const Navbar = () => {
   const { data: session } = useSession();
   const user = session?.user;
   return (
-    <div className="w-full min-h-20 ">
+    <div className="w-full min-h-20 bg-[#010101] ">
       <div className=" flex max-w-7xl mx-auto justify-between min-h-20 items-center p-5  border-b border-[#7777772d]">
         <div className="flex flex-col justify-center items-start gap-2">
           <Link className="text-2xl font-bold text-green-400" href="/">
@@ -35,10 +35,10 @@ const Navbar = () => {
           )}
         </div>
         {user && (
-          <DropdownMenu>
+          <DropdownMenu >
             <DropdownMenuTrigger>
-              <Avatar className="bg-blue-300 flex justify-center items-center p-3 cursor-pointer outline-none focus-visible:outline-non">
-                <h3 className=" font-bold text-neutral-800">
+              <Avatar className="bg-blue-500 flex justify-center items-center cursor-pointer outline-none focus-visible:outline-non">
+                <h3 className=" font-normal text-neutral-100">
                   {user?.username?.[0]?.toUpperCase()}
                 </h3>
               </Avatar>

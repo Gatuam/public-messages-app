@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const param = useParams<{ username: string }>();
   const form = useForm<z.infer<typeof verifyCodeValidation>>({
@@ -39,7 +39,7 @@ const page = () => {
     } catch (error) {
       console.log("error while sign up ", error);
       const AxiosError = error as AxiosError<ApiResponse>;
-      let errorMessage = AxiosError.response?.data.message;
+      const errorMessage = AxiosError.response?.data.message;
       toast.error(errorMessage);
     }
   };
@@ -93,4 +93,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   if (!session || !user) {
     return Response.json(
       {
-        success: true,
+        success: false,
         message: "User is not authorized",
       },
       { status: 401 }
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.log("Server error while accpecting message");
+    console.log(`Server error while accpecting message, ${error}`);
     return Response.json(
       {
         success: false,
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
   }
 }
 
-export async function Get(req: Request) {
+export async function Get(_req: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user = session?.user;

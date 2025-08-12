@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import mongoose from "mongoose";
 
-export async function POST(req: Request) {
+export async function POST(_req: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user = session?.user;
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (_error) {
     return Response.json(
       {
         success: true,

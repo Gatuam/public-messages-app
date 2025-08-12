@@ -133,7 +133,7 @@ export default function PublicMessageLanding() {
           </div>
         </section>
 
-        <section id="features" className="py-24 px-6 bg-gray-900/30">
+        <section id="features" className="py-24 px-6 bg-gray-900/20 border border-[#111] rounded-lg ">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Powerful Features

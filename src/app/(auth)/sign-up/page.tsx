@@ -42,7 +42,7 @@ const Page = () => {
     } catch (error) {
       console.log("error while sign up ",error)
       const AxiosError = error as AxiosError<ApiResponse>;
-      let errorMessage = AxiosError.response?.data.message
+      const errorMessage = AxiosError.response?.data.message
       toast.error(errorMessage)
     }finally{
       setSubmit(false)

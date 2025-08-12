@@ -4,7 +4,7 @@ import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
-import Navbar from "./dashboard/_components/Navbar";
+import Navbar from "./(app)/dashboard/_components/Navbar";
 
 const poppins = Poppins({
   variable: "--font-poppins",
