@@ -8,11 +8,11 @@ export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   if (!session || !user) {
-    return Response.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: false,
         message: "User is not authorized",
-      },
+      }),
       { status: 401 }
     );
   }
@@ -30,76 +30,74 @@ export async function POST(req: Request) {
     );
     if (!updateUser) {
       console.log("User not found");
-      return Response.json(
-        {
+      return new Response(
+        JSON.stringify({
           success: false,
           message: "User not found",
-        },
+        }),
         { status: 404 }
       );
     }
-    return Response.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: true,
-        message: "Message accpectance status succefully",
+        message: "Message acceptance status successfully",
         updateUser,
-      },
+      }),
       { status: 200 }
     );
   } catch (error) {
-    console.log(`Server error while accpecting message, ${error}`);
-    return Response.json(
-      {
+    console.log(`Server error while accepting message, ${error}`);
+    return new Response(
+      JSON.stringify({
         success: false,
-        message: "Server error while accpecting message",
-      },
+        message: "Server error while accepting message",
+      }),
       { status: 500 }
     );
   }
 }
 
-export async function Get(_req: Request) {
+export async function GET(_req: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user = session?.user;
   if (!session || !user) {
-    return Response.json(
-      {
-        success: true,
+    return new Response(
+      JSON.stringify({
+        success: false,
         message: "User is not authorized",
-      },
+      }),
       { status: 401 }
     );
   }
   const userId = user._id;
   try {
-    const foundUser = await UserModel.findOne({
-      userId,
-    });
+    const foundUser = await UserModel.findById(userId);
     if (!foundUser) {
       console.log("User not found");
-      return Response.json(
-        {
+      return new Response(
+        JSON.stringify({
           success: false,
           message: "User not found",
-        },
+        }),
         { status: 404 }
       );
     }
-    return Response.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: true,
         isAccpectingMessages: foundUser.isAccpectingMessage,
-      },
+      }),
       { status: 200 }
     );
   } catch (error) {
     console.log("Server error while checking message status");
-    return Response.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: false,
         message: "Server error while checking message status",
-      },
+      }),
       { status: 500 }
     );
   }

@@ -9,45 +9,45 @@ export async function POST(_req: Request) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   if (!session || !user) {
-    return Response.json(
-      {
-        success: true,
+    return new Response(
+      JSON.stringify({
+        success: false,
         message: "User is not authorized",
-      },
+      }),
       { status: 401 }
     );
   }
   const userId = new mongoose.Types.ObjectId(user._id);
   try {
-    const user = await UserModel.aggregate([
-      { $match: { id: userId } },
+    const userData = await UserModel.aggregate([
+      { $match: { _id: userId } },
       { $unwind: "$messages" },
       { $sort: { "messages.createdAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
-    if (!user || user.length === 0) {
-      return Response.json(
-        {
+    if (!userData || userData.length === 0) {
+      return new Response(
+        JSON.stringify({
           success: false,
           message: "User not found",
-        },
+        }),
         { status: 400 }
       );
     }
-    return Response.json(
-      {
-        sucess: true,
-        messages: user[0].message,
-      },
+    return new Response(
+      JSON.stringify({
+        success: true,
+        messages: userData[0].messages,
+      }),
       { status: 200 }
     );
   } catch (_error) {
-    return Response.json(
-      {
-        success: true,
-        message: "Error while getting message",
-      },
-      { status: 401 }
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Error while getting messages",
+      }),
+      { status: 500 }
     );
   }
 }
